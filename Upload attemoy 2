@@ -1,0 +1,30 @@
+function show-menu1{
+Clear-Host
+write-host "************Menu************"
+Write-Host "* 1 show Ip address        *"
+Write-Host "* 2 show current date      *"
+Write-Host "* 3 Show routing table     *"
+Write-Host "* Q Exit Script            *"
+Write-Host "************Menu************"
+}
+
+#IP Line for 1
+function show-ip1 {
+    Get-NetIPAddress -AddressFamily IPv4 | Select-Object IPAddress
+    Write-Host $(A); pause  
+}
+
+
+do {
+show-menu1    
+$ANS = Read-Host "Enter selection"
+
+switch ($ANS)
+{
+ 1 {show-ip1}
+ 2 {get-date}
+ 3 {netstat -r}
+ q {break}
+ default {Write-Host "Error in selection, choose 1, 2, 3, or q"}
+}
+}
